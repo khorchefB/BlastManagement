@@ -48,7 +48,7 @@ public sealed class Blast : AggregateRoot
         }
 
         var blast = new Blast();
-        blast.Raise(new BlastCreated(id, name, now));
+        blast.Raise(new BlastCreated(id, name.Trim(), now));
         return blast;
     }
 
