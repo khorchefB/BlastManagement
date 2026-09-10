@@ -1,0 +1,41 @@
+@host = http://localhost:5080
+@blastId = 00000000-0000-0000-0000-000000000000
+@holeId = 00000000-0000-0000-0000-000000000000
+
+### Create a blast
+POST {{host}}/blasts
+Content-Type: application/json
+
+{
+  "name": "B-042"
+}
+
+### Add a hole
+POST {{host}}/blasts/{{blastId}}/holes
+Content-Type: application/json
+
+{
+  "name": "H-01",
+  "position": {
+    "x": 10.5,
+    "y": 20.25,
+    "z": -3.0
+  },
+  "direction": 180,
+  "inclination": 15
+}
+
+### Charge the hole
+PUT {{host}}/blasts/{{blastId}}/holes/{{holeId}}/charge
+
+### Mark the hole ready (bonus)
+PUT {{host}}/blasts/{{blastId}}/holes/{{holeId}}/ready
+
+### Fire the blast
+POST {{host}}/blasts/{{blastId}}/fire
+
+### Read the projection
+GET {{host}}/blasts/{{blastId}}
+
+### Read the raw typed event history
+GET {{host}}/blasts/{{blastId}}/history
